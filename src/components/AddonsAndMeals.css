@@ -1,0 +1,79 @@
+.addons-and-meals {
+  padding: 16px 0;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.addons-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+}
+
+.addon-item {
+  flex: 1 1 220px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.addon-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.addon-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.addon-name {
+  font-weight: 600;
+}
+
+.addon-desc {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.addon-price {
+  font-size: 0.9rem;
+  color: #111;
+}
+
+.toggle-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.toggle-btn.active {
+  background: #d1fae5;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+.addon-image {
+  width: 100%;
+  height: 100px;          /* same as .meal-image */
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  display: block;
+}

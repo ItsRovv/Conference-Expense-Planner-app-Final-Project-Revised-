@@ -1,0 +1,50 @@
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.quantity-btn {
+  padding: 6px 10px;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-btn:hover {
+  background-color: #e5e7eb;
+  transform: scale(1.05);
+}
+
+.quantity-btn svg {
+  stroke: #1f2937;
+}
+
+.quantity-value {
+  min-width: 32px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #111827;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .quantity-controls {
+    gap: 8px;
+  }
+
+  .quantity-btn {
+    padding: 5px 8px;
+  }
+
+  .quantity-value {
+    font-size: 15px;
+  }
+}
