@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./AddonsAndMeals.css";
 
-// Public paths for add-on images (must exist in public/assets/icons/)
+// Public paths for add-on images
 const projectorImg = "/assets/icons/projector.jpg";
 const speakerImg = "/assets/icons/speaker.jpg";
 const micImg = "/assets/icons/microphone.jpg";
 const whiteboardImg = "/assets/icons/whiteboard.jpg";
 const signageImg = "/assets/icons/signage.jpg";
 
-/*
- Props:
-  - items: array of addon objects { id, name, description, price, active } (optional image)
-  - onToggle: function(id) called when user toggles selection (keeps compatibility)
-  - onQuantityChange: function(id, qty) called when user changes quantity (optional)
-*/
 export default function AddonsAndMeals({ items = [], onToggle = () => {}, onQuantityChange = () => {} }) {
-  // attach images if not present
   const itemsWithImages = items.map((item) => {
     switch (item.id) {
       case "projector":
@@ -33,17 +26,18 @@ export default function AddonsAndMeals({ items = [], onToggle = () => {}, onQuan
     }
   });
 
-  // local quantities mirror incoming items (so UI is responsive). Parent can control via onQuantityChange.
   const initialQtyMap = {};
-  itemsWithImages.forEach(it => { initialQtyMap[it.id] = typeof it.qty === "number" ? it.qty : 0; });
+  itemsWithImages.forEach(it => {
+    initialQtyMap[it.id] = typeof it.qty === "number" ? it.qty : 0;
+  });
   const [qtyMap, setQtyMap] = useState(initialQtyMap);
 
-  // keep local qty synced if parent updates items
   useEffect(() => {
     const map = {};
-    itemsWithImages.forEach(it => { map[it.id] = typeof it.qty === "number" ? it.qty : (qtyMap[it.id] || 0); });
+    itemsWithImages.forEach(it => {
+      map[it.id] = typeof it.qty === "number" ? it.qty : (qtyMap[it.id] || 0);
+    });
     setQtyMap(map);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length]);
 
   const increment = (id) => {
@@ -52,7 +46,6 @@ export default function AddonsAndMeals({ items = [], onToggle = () => {}, onQuan
       onQuantityChange(id, next[id]);
       return next;
     });
-    // ensure selected when qty > 0
     const item = itemsWithImages.find(i => i.id === id);
     if (item && !item.active) onToggle(id);
   };
@@ -76,7 +69,12 @@ export default function AddonsAndMeals({ items = [], onToggle = () => {}, onQuan
         <ul className="addons-list">
           {itemsWithImages.map((item) => (
             <li key={item.id} className="addon-item">
-              <img src={item.image} alt={item.name} className="addon-image" />
+              <div className="image-wrapper">
+                <img src={item.image} alt={item.name} className="addon-image" />
+                <div className="addon-hover-preview">
+                  <img src={item.image} alt={`Preview of ${item.name}`} />
+                </div>
+              </div>
 
               <div className="addon-body">
                 <div className="addon-info">
