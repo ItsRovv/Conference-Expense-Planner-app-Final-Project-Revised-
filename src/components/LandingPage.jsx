@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
 
-// ✅ Public path reference (file must be in public/assets/icons/)
 const bg = "/assets/icons/conference-bg1.jpg";
 
 export default function LandingPage() {
@@ -19,13 +18,17 @@ export default function LandingPage() {
       }}
     >
       <div className="overlay">
-        <div className="landing-content">
-          <h1 className="landing-header">Welcome to Blizz Hotel!</h1>
+        <div className="landing-content" role="main">
+          <h1 className="landing-header" aria-label="Welcome to Blizz Hotel">
+            Welcome to Blizz Hotel!
+          </h1>
+
           <p className="landing-subtitle">Plan your next major event with us!</p>
 
           <button
             className="get-started"
             onClick={() => navigate("/planner")}
+            aria-label="Get started with Blizz Hotel planner"
           >
             GET STARTED
           </button>
