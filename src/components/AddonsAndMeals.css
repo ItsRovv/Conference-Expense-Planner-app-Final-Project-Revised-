@@ -1,79 +1,82 @@
-.addons-and-meals {
-  padding: 16px 0;
-}
+.addons-and-meals { padding: 12px 0; }
 
-.section-title {
-  font-size: 1.4rem;
-  margin-bottom: 12px;
-}
+.section-title { font-size: 1.25rem; margin-bottom: 12px; }
 
 .addons-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
   padding: 0;
+  list-style: none;
 }
 
 .addon-item {
-  flex: 1 1 220px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
   background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.addon-image {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.addon-details {
-  flex: 1;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-}
-
-.addon-name {
-  font-weight: 600;
-}
-
-.addon-desc {
-  font-size: 0.85rem;
-  color: #555;
-}
-
-.addon-price {
-  font-size: 0.9rem;
-  color: #111;
-}
-
-.toggle-btn {
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
-  background: #fff;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.toggle-btn.active {
-  background: #d1fae5;
-  border-color: #10b981;
-  color: #065f46;
+  gap: 10px;
+  align-items: stretch;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
 .addon-image {
   width: 100%;
-  height: 100px;          /* same as .meal-image */
+  height: 100px;
   object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 8px;
+  border-radius: 8px;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.addon-item:hover .addon-image {
+  transform: scale(1.08);
+  z-index: 1;
+}
+
+.addon-body { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+
+.addon-info { flex: 1 1 auto; min-width: 0; display:flex; flex-direction: column; gap:6px; }
+.addon-name { font-weight: 600; font-size: 1rem; }
+.addon-desc { font-size: 0.85rem; color: #555; }
+.addon-price { font-weight: 600; color: #111; }
+
+.addon-controls { display:flex; flex-direction: column; gap:8px; align-items: center; min-width: 150px; }
+
+.qty-controls { display:flex; align-items:center; gap:8px; background: transparent; padding: 4px; border-radius: 8px; }
+
+.qty-btn {
+  width: 36px;
+  height: 36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  border:1px solid #ddd;
+  background:#fff;
+  cursor:pointer;
+  font-size:18px;
+  user-select:none;
+}
+
+.qty-decrement { border-color:#f87171; color:#b91c1c; background:#fff5f5; }
+.qty-increment { border-color:#34d399; color:#047857; background:#f0fdf4; }
+
+.qty-number { min-width:28px; text-align:center; font-weight:600; }
+
+.toggle-btn {
+  padding:6px 10px;
+  border-radius:6px;
+  border:1px solid #d1d5db;
+  background:#fff;
+  cursor:pointer;
+}
+.toggle-btn.active { background:#d1fae5; border-color:#10b981; color:#065f46; }
+
+/* responsive adjustments */
+@media (max-width:600px) {
+  .addon-body { flex-direction: column; align-items: stretch; }
+  .addon-controls { min-width: auto; flex-direction: row; justify-content: space-between; }
 }
