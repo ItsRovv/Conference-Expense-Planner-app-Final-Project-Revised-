@@ -1,375 +1,178 @@
-/* Room list layout: horizontal on wider screens, vertical on small screens */
+.product-selection {
+  padding: 20px;
+  background: #f6f7fb;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* selection header */
+.selection-header {
+  margin-bottom: 18px;
+}
+.selection-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.6rem;
+}
+.selection-header p {
+  margin: 0;
+  color: #555;
+}
+
+/* room list */
 .room-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-  align-items: start;
-  width: 100%;
-  margin: 0 auto;
-  padding: 12px 8px;
-}
-
-/* Room card: ensure consistent internal spacing */
-.room-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 12px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-  min-height: 340px; /* keeps cards visually balanced */
-}
-
-/* Uniform image container preserving aspect ratio */
-.room-image {
-  width: 100%;
-  height: 160px;       /* fixed visual height for uniformity */
-  object-fit: cover;   /* crop to fill while keeping aspect */
-  border-radius: 8px;
-  display: block;
-}
-
-/* Scale images slightly larger on wide screens */
-@media (min-width: 1024px) {
-  .room-image { height: 200px; }
-  .room-card { min-height: 380px; }
-}
-
-/* Mobile: stack cards vertically (single column) */
-@media (max-width: 600px) {
-  .room-list {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 10px;
-  }
-
-  .room-card {
-    min-height: auto;
-    padding: 10px;
-  }
-
-  .room-image {
-    height: 180px;
-  }
-
-  /* tighten spacing for mobile */
-  .quantity-controls { gap: 8px; }
-  .qty-btn { min-width: 40px; min-height: 40px; }
-}
-
-/* Optional: keep titles and meta consistent */
-.room-card h3 {
-  margin: 0;
-  font-size: 1.05rem;
-}
-
-.room-card p {
-  margin: 0;
-  color: #444;
-  font-size: 0.95rem;
-}
-
-/* container: fixed width so buttons sit at extremes and number stays centered */
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* left button left, right button right */
-  width: 140px;                    /* adjust to taste; keeps layout consistent */
-  gap: 8px;
-  margin-top: 8px;
-}
-
-/* shared button sizing */
-.qty-btn {
-  flex: 0 0 40px;                  /* fixed square buttons */
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  background: #fff;
-  cursor: pointer;
-  padding: 0;
-}
-
-/* center number expands to fill remaining space and stays centered */
-.qty-number {
-  flex: 1 1 auto;
-  text-align: center;
-  min-width: 36px;                 /* prevents collapse on small numbers */
-  font-weight: 600;
-  font-size: 16px;
-  display: inline-block;
-}
-
-/* optional visual tweaks */
-.qty-btn:active { transform: scale(.98); }
-.qty-btn:focus { outline: 3px solid rgba(59,130,246,.12); outline-offset: 2px; }
-
-/* responsive: reduce width on very small screens */
-@media (max-width: 360px) {
-  .quantity-controls { width: 120px; }
-  .qty-btn { flex: 0 0 36px; height: 36px; font-size: 16px; }
-  .qty-number { min-width: 30px; font-size: 15px; }
-}
-
-/* Minus (decrement) button: red */
-.qty-decrement {
-  background-color: #fff5f5; /* pale red background */
-  border: 1px solid #f87171; /* red border */
-  color: #b91c1c;            /* strong red text/icon */
-}
-
-/* Plus (increment) button: green */
-.qty-increment {
-  background-color: #f0fdf4; /* pale green background */
-  border: 1px solid #34d399; /* green border */
-  color: #047857;            /* strong green text/icon */
-}
-
-/* Hover/active states */
-.qty-decrement:hover {
-  background-color: #fee2e2;
-  transform: translateY(-1px);
-}
-.qty-decrement:active {
-  transform: scale(.98);
-}
-
-.qty-increment:hover {
-  background-color: #dcfce7;
-  transform: translateY(-1px);
-}
-.qty-increment:active {
-  transform: scale(.98);
-}
-
-/* Focus ring for keyboard accessibility */
-.qty-decrement:focus,
-.qty-increment:focus {
-  outline: 3px solid rgba(59,130,246,.18);
-  outline-offset: 2px;
-}
-
-/* Keep overall sizing consistent with previous rules */
-.qty-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 40px;
-  height: 40px;
-  font-size: 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  padding: 0;
-  user-select: none;
-}
-
-.meals-section {
-  margin-top: 24px;
-}
-
-.meals-section h2 {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
-}
-
-.people-input {
-  margin-left: 8px;
-  padding: 6px 10px;
-  width: 80px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-.meal-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
-  margin-top: 16px;
 }
-
-.meal-card {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 12px;
-  text-align: center;
-  transition: box-shadow 0.2s ease;
-}
-
-.meal-card.active {
-  border-color: #10b981;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-}
-
-.meal-image {
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 8px;
-}
-
-.meal-card h3 {
-  margin: 0;
-  font-size: 1rem;
-}
-
-.meal-card p {
-  margin: 4px 0;
-  font-size: 0.9rem;
-  color: #374151;
-}
-
-.toggle-btn {
-  margin-top: 8px;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  border: 1px solid #d1d5db;
-  background-color: #ffffff;
-  color: #111827;
-  transition: background 0.2s ease;
-}
-
-.toggle-btn.active {
-  background-color: #d1fae5;
-  border-color: #10b981;
-  color: #065f46;
-}
-
-/* ProductSelectionPage.css (add or merge into your file) */
-
-.room-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-  margin: 12px 0;
-}
-
 .room-card {
   background: #fff;
   border-radius: 10px;
   padding: 12px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(12, 20, 40, 0.06);
   display: flex;
   flex-direction: column;
   gap: 8px;
   align-items: stretch;
 }
-
 .room-image {
   width: 100%;
-  height: 160px;
+  height: 130px;
   object-fit: cover;
   border-radius: 8px;
-  display: block;
 }
 
-@media (min-width: 1024px) {
-  .room-image { height: 200px; }
-}
-
-/* Quantity controls: left button, centered number, right button */
+/* quantity controls */
 .quantity-controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 140px;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 6px;
 }
-
 .qty-btn {
-  flex: 0 0 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
   background: #fff;
   cursor: pointer;
-  padding: 0;
-  user-select: none;
+  font-size: 18px;
+}
+.qty-decrement { color: #b91c1c; background:#fff5f5; }
+.qty-increment { color: #065f46; background:#f0fdf4; }
+.qty-number {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 700;
 }
 
-/* red minus, green plus */
-.qty-decrement { border-color: #f87171; color: #b91c1c; background: #fff5f5; }
-.qty-increment { border-color: #34d399; color: #047857; background: #f0fdf4; }
+/* totals and actions */
+.total-section {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.total-section h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
 
-.qty-number {
-  flex: 1 1 auto;
-  text-align: center;
-  min-width: 36px;
+/* proceed buttons */
+.proceed-btn {
+  background: #0b2340;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.proceed-btn.secondary {
+  background: #fff;
+  color: #0b2340;
+  border: 1px solid #cbd5e1;
+}
+
+/* addons & meals section */
+.addons-header {
+  margin-bottom: 12px;
+}
+.addons-wrapper {
+  margin-bottom: 18px;
+}
+
+/* meals layout */
+.meals-section {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(12,20,40,0.04);
+}
+.people-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
   font-weight: 600;
 }
-
-/* Meals layout */
-.meals-section { margin-top: 20px; }
-.people-label { display: inline-flex; align-items: center; gap: 8px; }
 .people-input {
-  margin-left: 8px;
-  padding: 6px 8px;
   width: 90px;
+  padding: 6px 8px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #e6eef8;
 }
 
+/* meal list grid */
 .meal-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 14px;
-  margin-top: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
 }
-
 .meal-card {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  background: #fff;
+  border-radius: 10px;
   padding: 10px;
-  text-align: center;
+  border: 1px solid #eef2f7;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
-
+.meal-card.active {
+  border-color: #0b2340;
+  box-shadow: 0 8px 22px rgba(11,35,64,0.06);
+  transform: translateY(-4px);
+}
 .meal-image {
   width: 100%;
   height: 100px;
   object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 8px;
-}
-
-.actions-row {
-  display: flex;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-/* AddonsAndMeals.css (basic) */
-
-.addons-and-meals { padding: 12px 0; }
-.addons-list { display: flex; flex-wrap: wrap; gap: 12px; padding: 0; list-style: none; }
-.addon-item {
-  flex: 1 1 220px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #fff;
   border-radius: 8px;
-  padding: 10px;
-  border: 1px solid #e6e6e6;
 }
+
 .toggle-btn {
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 8px;
+  border-radius: 8px;
   border: 1px solid #d1d5db;
   background: #fff;
   cursor: pointer;
+  font-weight: 700;
 }
-.toggle-btn.active { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.toggle-btn.active {
+  background: #fff;
+  color: #0b2340;
+  border: 2px solid #0b2340;
+}
+
+/* responsive tweaks */
+@media (max-width: 720px) {
+  .total-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}

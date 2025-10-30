@@ -3,20 +3,7 @@ import "./ProductSelectionPage.css";
 import Header from "./Header";
 import AddonsAndMeals from "./AddonsAndMeals";
 
-/*
-  Put these files into: public/assets/icons/
-  Filenames (exact/case-sensitive):
-    auditorium.jpg
-    conference-room.jpg
-    presentation-room.jpg
-    large-meeting.jpg
-    small-meeting.jpg
-    breakfast.jpg
-    lunch.jpg
-    hightea.jpg
-    dinner.jpg
-*/
-
+// Image paths
 const auditoriumImg = "/assets/icons/auditorium.jpg";
 const conferenceRoomImg = "/assets/icons/conference-room.jpg";
 const presentationRoomImg = "/assets/icons/presentation-room.jpg";
@@ -30,6 +17,11 @@ const dinnerImg = "/assets/icons/dinner.jpg";
 
 function ProductSelectionPage({ onShowDetails }) {
   const [step, setStep] = useState("rooms");
+
+  const handleTabChange = (tabId) => {
+    if (tabId === "venue") setStep("rooms");
+    else if (tabId === "addons" || tabId === "meals") setStep("addons");
+  };
 
   const [rooms, setRooms] = useState([
     { id: "room-aud", name: "Auditorium Hall", capacity: 200, price: 5500, qty: 0, image: auditoriumImg },
@@ -148,7 +140,11 @@ function ProductSelectionPage({ onShowDetails }) {
 
   return (
     <div className="product-selection">
-      <Header onShowDetails={handleShowDetails} />
+      <Header
+        activeTab={step === "rooms" ? "venue" : "addons"}
+        onTabChange={handleTabChange}
+        onShowDetails={handleShowDetails}
+      />
 
       {step === "rooms" && (
         <>
@@ -228,11 +224,11 @@ function ProductSelectionPage({ onShowDetails }) {
             </label>
 
             <div className="meal-list">
-              {mealOptions.map(meal => (
+                            {mealOptions.map(meal => (
                 <div key={meal.key} className={`meal-card ${meals[meal.key] ? "active" : ""}`}>
                   <img src={meal.image} alt={meal.name} className="meal-image" />
                   <h3>{meal.name}</h3>
-                  <p>₱{meal.price} per person</p>
+                  <p>${meal.price} per person</p>
                   <button
                     type="button"
                     className={`toggle-btn ${meals[meal.key] ? "active" : ""}`}

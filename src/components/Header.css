@@ -1,30 +1,154 @@
+:root {
+  --nav-bg: #0b2340;
+  --accent: #ffd24d;
+  --muted: #cbd5e1;
+  --active-bg: #ffffff;
+  --active-border: #0b2340;
+}
+
+/* Navbar container */
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #003366;
-  padding: 15px 40px;
-  color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  gap: 16px;
+  padding: 14px 18px;
+  background: var(--nav-bg);
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(2, 6, 23, 0.4);
+  flex-wrap: wrap;
+}
+
+/* Left section: logo */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .logo {
-  font-size: 1.5rem;
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: #fff;
+}
+
+/* Center section: tabs */
+.navbar-center {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 160px;
+  flex-wrap: wrap;
+}
+
+/* Tab buttons */
+.nav-tab {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 10px 14px;
+  border-radius: 10px;
   font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1 1 auto;
+  min-width: 90px;
+  text-align: center;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+}
+
+/* Hover effect */
+.nav-tab:hover {
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Active tab styling — matches your Venue button */
+.nav-tab.active {
+  background: var(--active-bg);
+  color: var(--active-border);
+  border: 2px solid var(--active-border);
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Right section: details button */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .details-btn {
-  background-color: #f5b942;
+  background: var(--accent);
+  color: #082033;
   border: none;
-  color: #fff;
-  padding: 10px 20px;
+  padding: 8px 14px;
+  font-weight: 700;
   border-radius: 8px;
-  font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s ease;
+  box-shadow: 0 6px 18px rgba(255, 210, 77, 0.16);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .details-btn:hover {
-  background-color: #ffcc4d;
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(255, 210, 77, 0.22);
+}
+
+/* Focus accessibility */
+.nav-tab:focus,
+.details-btn:focus {
+  outline: 3px solid rgba(255, 210, 77, 0.18);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Responsive layout */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 12px;
+  }
+
+  .nav-tab {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 540px) {
+  .navbar {
+    align-items: flex-start;
+  }
+
+  .navbar-left {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-center {
+    width: 100%;
+    margin-top: 8px;
+    gap: 6px;
+  }
+
+  .nav-tab {
+    flex: 1 1 calc(33.33% - 8px);
+    min-width: 0;
+    padding: 10px 6px;
+    font-size: clamp(0.9rem, 3.6vw, 1rem);
+  }
+
+  .navbar-right {
+    order: 3;
+    width: 100%;
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
